@@ -1,11 +1,12 @@
 from Action import Action
 from itertools import permutations
 import numpy as np
-from sympy.utilities.iterables import multiset_permutations
 import torch
 from State import State
 from Puzzle import Puzzle
-PATH = 'Data/V.pth'
+import pygame
+
+PATH = 'Data/V_2.pth'
 gamma = 0.95
 
 class AI_Agent:
@@ -23,7 +24,7 @@ class AI_Agent:
             if next_value > best_value:
                 best_value = next_value
                 best_action = action
-
+        pygame.time.wait(300)
         return best_action
     
     def Init_Value_Table (self):
@@ -36,8 +37,9 @@ class AI_Agent:
     def Value_Iteration(self):
         accuracy = 0.001
         acc = 1
-
+        epochs = 0
         while acc > accuracy:
+            epochs += 1
             acc = 0
             for key , old_value in self.V.items():
                 best_value = -1000
@@ -53,7 +55,7 @@ class AI_Agent:
                 self.set_V(state, best_value)
                 acc = max(acc, abs(old_value - best_value))
                 if best_value > 0 :
-                    print (f'{key} \t {old_value:.3f} \t {best_value:.3f} \t acc {acc}')
+                    print (f'{key} \t {old_value:.3f} \t {best_value:.3f} \t acc {acc} \t ephocs {epochs}')
                 
 
         self.save_v()

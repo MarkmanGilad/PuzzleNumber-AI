@@ -14,11 +14,11 @@ def main ():
     goal = puzzle.make_goal_state(ROWS,COLS)
     
     graphics = Graphics()
-    agent = Human_Agent()
-    agent_AI = AI_Agent(puzzle)
-    # agent_AI.Init_Value_Table()
-    # agent_AI.Value_Iteration()
-    agent_AI.load_v()
+    # agent = Human_Agent()
+    agent = AI_Agent(puzzle)
+    # agent.Init_Value_Table()
+    # agent.Value_Iteration()
+    agent.load_v()
 
     run = True
     clock = pygame.time.Clock()
@@ -33,14 +33,12 @@ def main ():
             if event.type == pygame.QUIT:
                run = False
 
-        action = agent_AI.get_Action(events)
+        action = agent.get_Action(events)
         count += 1
         puzzle.move(action)
-        pygame.time.delay(500)
-        
         graphics.draw(puzzle.state)
         pygame.display.update()
-        
+        print(count, end = '\r')
         if puzzle.state == goal:
             print(f"Victory in {count}")
             run = False
