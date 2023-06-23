@@ -8,7 +8,8 @@ class Graphics:
         # self.board = state.board
         # self.rows, self.cols = self.board.shape
         self.win = pygame.display.set_mode((WIDTH, HEIGHT))
-
+        pygame.display.set_caption('Puzzle')
+        
     def draw_all_pieces(self, state:State):
         board = state.board
         rows, cols = board.shape
