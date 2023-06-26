@@ -6,7 +6,7 @@ from State import State
 from Puzzle import Puzzle
 import pygame
 
-PATH = 'Data/V_2.pth'
+PATH = 'Data/V_4.pth'
 gamma = 0.95
 
 class AI_Agent:
@@ -20,7 +20,7 @@ class AI_Agent:
         best_action = None
         for action in self.env.get_actions(state):
             next_state, reward = self.env(state, action)
-            next_value = reward + self.get_V(next_state)
+            next_value = reward + gamma * self.get_V(next_state)
             if next_value > best_value:
                 best_value = next_value
                 best_action = action
@@ -50,8 +50,6 @@ class AI_Agent:
                     new_state, reward = self.env(state,action)
                     new_value = reward + gamma*self.get_V(new_state)
                     best_value = max(best_value, new_value)
-                    if best_value == 1:
-                        i=1
                 self.set_V(state, best_value)
                 acc = max(acc, abs(old_value - best_value))
                 if best_value > 0 :

@@ -16,9 +16,9 @@ def main ():
     graphics = Graphics()
     # agent = Human_Agent()
     agent = AI_Agent(puzzle)
-    # agent.Init_Value_Table()
-    # agent.Value_Iteration()
-    agent.load_v()
+    agent.Init_Value_Table()
+    agent.Value_Iteration()
+    # agent.load_v()
 
     run = True
     clock = pygame.time.Clock()
@@ -41,7 +41,9 @@ def main ():
         print(count, end = '\r')
         if puzzle.state == goal:
             print(f"Victory in {count}")
-            run = False
+            # run = False
+            puzzle.shuffle()
+            count = 0
             pygame.time.wait(2000)
     pygame.quit()
 
