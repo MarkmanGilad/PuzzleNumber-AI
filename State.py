@@ -25,7 +25,7 @@ class State:
     def make_goal_state (self, rows=ROWS, cols=COLS):
         board = np.arange(rows*cols)
         board = board.reshape((rows, cols))
-        return State(board)
+        return board
 
     def __eq__(self, other):
         return np.equal(self.board, other.board).all()
