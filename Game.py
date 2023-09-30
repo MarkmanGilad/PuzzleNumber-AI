@@ -14,11 +14,11 @@ def main ():
     goal = puzzle.make_goal_state(ROWS,COLS)
     
     graphics = Graphics()
-    # agent = Human_Agent()
-    agent = AI_Agent(puzzle)
+    agent = Human_Agent()
+    # agent = AI_Agent(puzzle)
     # agent.Init_Value_Table()
     # agent.Value_Iteration()
-    agent.load_v()
+    # agent.load_v()
 
     run = True
     clock = pygame.time.Clock()
