@@ -7,9 +7,9 @@ class Human_Agent:
         for event in events:
             if event.type == pygame.KEYUP:
                 match event.key:
-                    case pygame.K_LEFT: return Action.LEFT
-                    case pygame.K_RIGHT: return Action.RIGHT
-                    case pygame.K_UP: return Action.UP
-                    case pygame.K_DOWN: return Action.DOWN
+                    case pygame.K_LEFT: return Action.RIGHT
+                    case pygame.K_RIGHT: return Action.LEFT
+                    case pygame.K_UP: return Action.DOWN
+                    case pygame.K_DOWN: return Action.UP
             else:
                 return None
