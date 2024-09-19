@@ -32,29 +32,10 @@ class AI_Agent:
         states = permutations([0,1,2,3,4,5,6,7,8])
         for s in states:
             self.V[s] = 0
-        self.save_v()
+        # self.save_v()
 
     def Value_Iteration(self):
-        accuracy = 0.001
-        acc = 1
-        epochs = 0
-        while acc > accuracy:
-            epochs += 1
-            acc = 0
-            for key , old_value in self.V.items():
-                best_value = -1000
-                state = self.key_to_state(key)
-                if state == self.env.goal:
-                    continue
-                for action in self.env.get_actions(state):
-                    new_state, reward = self.env(state,action)
-                    new_value = reward + gamma*self.get_V(new_state)
-                    best_value = max(best_value, new_value)
-                self.set_V(state, best_value)
-                acc = max(acc, abs(old_value - best_value))
-                if best_value > 0 :
-                    print (f'{key} \t {old_value:.3f} \t {best_value:.3f} \t acc {acc} \t ephocs {epochs}')
-                
+        pass
 
         self.save_v()
 
@@ -62,7 +43,7 @@ class AI_Agent:
         torch.save(self.V, PATH)
 
     def load_v (self):
-        self.V = torch.load(PATH)
+        self.V = torch.load(PATH, weights_only=False)
     
     def get_V(self, state: State):
         key = tuple(state.board.flatten())
