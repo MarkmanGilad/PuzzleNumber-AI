@@ -32,7 +32,7 @@ class AI_Agent:
         states = permutations([0,1,2,3,4,5,6,7,8])
         for s in states:
             self.V[s] = 0
-        self.save_v()
+        # self.save_v()
 
     def Value_Iteration(self):
         accuracy = 0.001
@@ -62,7 +62,7 @@ class AI_Agent:
         torch.save(self.V, PATH)
 
     def load_v (self):
-        self.V = torch.load(PATH)
+        self.V = torch.load(PATH, weights_only=False)
     
     def get_V(self, state: State):
         key = tuple(state.board.flatten())
