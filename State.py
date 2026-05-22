@@ -23,7 +23,8 @@ class State:
         return row, col
 
     def make_goal_state (self, rows=ROWS, cols=COLS):
-        board = np.arange(rows*cols)
+        # board = np.arange(rows*cols)
+        board = np.array([1,2,3,4,5,6,7,8,0])
         board = board.reshape((rows, cols))
         return board
 

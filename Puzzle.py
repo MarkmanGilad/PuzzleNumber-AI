@@ -15,8 +15,9 @@ class Puzzle:
             self.shuffle()
         self.goal = self.make_goal_state()
 
-    def make_goal_state (self, rows=ROWS, cols=COLS):
-        board = np.arange(rows*cols)
+    def make_goal_state (self, rows=ROWS, cols=COLS):  # state has make_goal_state too
+        # board = np.arange(rows*cols)
+        board = np.array([1,2,3,4,5,6,7,8,0])
         board = board.reshape((rows, cols))
         return State(board)
 
@@ -79,7 +80,7 @@ class Puzzle:
         state.blank_pos = target_row, target_col
         return state
 
-    def shuffle (self, state: State = None, iteration=100):
+    def shuffle (self, state: State = None, iteration=100):  # state has shuffle too
         if state is None:
             state = self.make_goal_state()
             self.state = state
